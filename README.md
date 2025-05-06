@@ -55,4 +55,3 @@ Now we feed the recipes from the second part of the texts to the input of CLLM2.
 
 ### 5. PS.
 On February 18, 2025, the article “Cramming 1568 Tokens into a Single Vector and Back Again: Exploring the Limits of Embedding Space Capacity” (https://arxiv.org/abs/2502.13063 и https://github.com/yurakuratov/hidden_capacity) was published. The authors managed to reduce the size of the token embedding sequence by 1500 times with the ability to restore the initial values. Moreover, they did not even use complex neural network models for this. This text contains about 2000 words and about the same number of tokens. That is, the entire document can be fit into a couple of “thoughts”.
-
