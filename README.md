@@ -48,10 +48,10 @@ In order to compute something new, void zones must first arise. If the CLLM dime
 
 It is possible that when training CLLM the resulting vectors will be distributed uniformly, preventing the void zones method from being applied. In this case, another term will need to be added to the lost function, which would grow with a uniform distribution of vectors and decrease when the embeddings vectors tend to be closer to each other.
 
-### 4. Testing
+## 4. Testing
 The author suggests a simple and understandable way to test the method. Let's take culinary recipes as a text corpus. They have a short length, so we can work with a small token embeddings array, which will reduce the amount of calculations. The options for ingredients, methods, and modes of their processing and serving are limited. Their combinations are also limited, so it will be possible to build the resulting CLLM. We divide all recipes into two parts. In the second part, we select one recipe, for example, all pizzas. The first part includes all recipes except those included in the second part. On the first corpus of texts, we train CLLM1, which knows nothing about the recipes from the second set of texts. Now we train CLLM1 on the texts of recipes from the second part. As a result, we get CLLM2.
 
 Now we feed the recipes from the second part of the texts to the input of CLLM2. The resulting embeddings should not be found in CLLM1, because CLLM1 has not seen these recipes. That is, there should be emptiness in their place. Now we feed the embeddings of CLLM2 from the texts from the second set of texts to the input of the CLLM1 decoder and then feed the resulting array of token embeddings to the input of the original LLM decoder. If the author is right and we did everything correctly, then at the output we will get pizza recipes from the second set of text, despite the fact that CLLM1 trained only on the first set has never seen them.
 
-### 5. PS.
+## 5. PS.
 On February 18, 2025, the article “Cramming 1568 Tokens into a Single Vector and Back Again: Exploring the Limits of Embedding Space Capacity” (https://arxiv.org/abs/2502.13063 и https://github.com/yurakuratov/hidden_capacity) was published. The authors managed to reduce the size of the token embedding sequence by 1500 times with the ability to restore the initial values. Moreover, they did not even use complex neural network models for this. This text contains about 2000 words and about the same number of tokens. That is, the entire document can be fit into a couple of “thoughts”.
